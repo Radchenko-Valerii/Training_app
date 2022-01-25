@@ -1,11 +1,14 @@
 import React from 'react';
+import Form from './components/Form/Form';
+import NavBar from './components/NavBar/NavBar';
 
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <NavBar/>
+      <Form />
+    </>
   );
 }
 
