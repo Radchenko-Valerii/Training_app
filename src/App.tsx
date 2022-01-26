@@ -8,7 +8,6 @@ import { ITodosState } from './types/types';
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<ITodosState[]>([]);
-  const [showing, setShowing] = useState<boolean>(false);
 
   const addHandler = (task: string) => {
     const newEntry = {
@@ -27,7 +26,6 @@ const App: React.FC = () => {
   }
 
   const removeHandler = (id: number) => {
-    setShowing(true);
     setTodos(prev => prev.filter((task)=> task.id!==id))
   }
 
@@ -36,7 +34,6 @@ const App: React.FC = () => {
       <NavBar/>
       <Form addTask={addHandler}/>
       <ToDoList tasks={todos} doneHandler={doneHandler} removeHandler={removeHandler}/>
-      <ModalWindow text={'Are you shure?'} showing={showing}/>
     </>
   );
 }
