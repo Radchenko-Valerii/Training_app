@@ -13,8 +13,6 @@ const Form: React.FC<IForm> = ({addTask}) => {
     setTask(event.target.value)
   };
 
-  // useEffect((task: string) => {return addTask(task)}, [task]);
-
   const keyHandler = (event: React.KeyboardEvent) => {
     if(event.key === 'Enter'){
       addTask(task);
