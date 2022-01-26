@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField, Button } from '@mui/material';
+import { AddTask } from '@mui/icons-material';
 
-const Form = () => {
+interface IForm {
+  addTask(task: string): void;
+}
+
+const Form: React.FC<IForm> = ({addTask}) => {
   const [task, setTask] = useState<string>('');
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value)
   };
 
+  // useEffect((task: string) => {return addTask(task)}, [task]);
+
   const keyHandler = (event: React.KeyboardEvent) => {
     if(event.key === 'Enter'){
-      console.log(task);
+      addTask(task);
       setTask('')
     }
   }
 
   const clickHandler = () => {
-    console.log(task);
+    addTask(task);
     setTask('')
   }
 
