@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListItem, IconButton, ListItemButton, ListItemIcon, Checkbox, ListItemText } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { ITodo } from '../../types/types';
@@ -9,15 +9,18 @@ const classNames = require('classnames');
 const Todo: React.FC<ITodo> = ({task, isComplited, id, doneHandler, removeHandler}) => {
 
   const [shure, setShure] = useState<boolean>(false);
+  const [showing, setShowing] = useState<boolean>(false);
+
   
-  
-  const handleToggle = (id: number) => { 
-    const conf = window.confirm('Are you shure');
-    setShure(conf)
+  const handleToggle = () => {
+    setShowing(!showing)
+  }
+
+  useEffect(()=>{
     if(shure){
       removeHandler(id)
     }
-  }
+  }, [shure])
 
   const containerClases = classNames({itemContainer: true, done: isComplited})
 
@@ -26,7 +29,7 @@ const Todo: React.FC<ITodo> = ({task, isComplited, id, doneHandler, removeHandle
       <ListItem
             key={id}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments" onClick={()=> handleToggle(id)}>
+              <IconButton edge="end" aria-label="comments" onClick={()=> handleToggle()}>
                 <DeleteOutlineIcon />
               </IconButton>
             }
@@ -55,6 +58,7 @@ const Todo: React.FC<ITodo> = ({task, isComplited, id, doneHandler, removeHandle
          id={id.toString()} primary={task} />
             </ListItemButton>
           </ListItem>
+          <ModalWindow text={'Are you shure?'} showing={showing} setShowing={setShowing} setShure={setShure}/>
     </div>
   );
 }

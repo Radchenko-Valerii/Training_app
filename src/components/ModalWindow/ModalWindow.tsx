@@ -19,37 +19,33 @@ const style = {
   p: 4,
 };
 
-export default function ModalWindow ({text, showing} : IModal) {
-  const [open, setOpen] = React.useState(false);
-  
-  React.useEffect(()=>{
-    setOpen(showing)
-  }, [showing]);
-
-  const handleClose = () => {
-    setOpen(false)
-  }
+export default function ModalWindow ({text, showing, setShure, setShowing} : IModal) {
 
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
+        open={showing}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={showing}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               {text}
             </Typography>
-            <Button size='large'>Yes</Button>
-            <Button size='large' onClick={()=>setOpen(false)} href="/">No</Button>
+            <Button size='large' onClick={()=>{
+              setShure(true);
+              setShowing(!showing)}
+              }>Yes</Button>
+            <Button size='large' onClick={()=>{
+              setShure(false);
+              setShowing(!showing)}
+              }>No</Button>
           </Box>
         </Fade>
       </Modal>
