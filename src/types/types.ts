@@ -20,7 +20,9 @@ export type ITodo = {
 
 export interface IModal {
   text: string,
-  showing: boolean
+  showing: boolean,
+  setShure: (shure: boolean) => any
+  setShowing: (showing: boolean) => any
 }
 
 // export interface IModalState{
