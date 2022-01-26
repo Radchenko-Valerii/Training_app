@@ -48,8 +48,8 @@ export default function ModalWindow ({text, showing} : IModal) {
             <Typography id="transition-modal-title" variant="h6" component="h2">
               {text}
             </Typography>
-            <Button size='large' onClick={()=>{set}}>Yes</Button>
-            <Button size='large' href="/">No</Button>
+            <Button size='large'>Yes</Button>
+            <Button size='large' onClick={()=>setOpen(false)} href="/">No</Button>
           </Box>
         </Fade>
       </Modal>
